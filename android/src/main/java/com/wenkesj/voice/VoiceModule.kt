@@ -45,12 +45,12 @@ class VoiceModule internal constructor(context: ReactApplicationContext) :
     voice.isRecognizing(callback)
   }
 
+  @ReactMethod
   override fun addListener(eventType: String) {
-
   }
 
+  @ReactMethod
   override fun removeListeners(count: Double) {
-
   }
 
   override fun getName(): String {
