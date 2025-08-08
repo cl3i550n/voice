@@ -1,7 +1,7 @@
 {
   "name": "@react-native-voice/voice",
   "description": "React Native Native Voice library for iOS and Android",
-  "version": "3.2.5",
+  "version": "3.2.6",
   "author": "Clandrade <cleisson@outlook.com.br>",
   "private": false,
   "homepage": "https://github.com:cl3i550n/voice.git",
