@@ -26,3 +26,6 @@ local.properties
 
 # Visual Studio Code
 .vscode/
+
+# Package Library
+*.tgz
