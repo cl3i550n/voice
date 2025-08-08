@@ -1,21 +1,14 @@
 {
   "name": "@react-native-voice/voice",
+  "version": "3.2.8",
   "description": "React Native Native Voice library for iOS and Android",
-  "version": "3.2.7",
   "author": "Clandrade <cleisson@outlook.com.br>",
+  "license": "MIT",
   "private": false,
   "homepage": "https://github.com:cl3i550n/voice.git",
-  "devDependencies": {
-    "@react-native-community/eslint-config": "^3.2.0",
-    "@semantic-release/git": "^10.0.1",
-    "@types/invariant": "^2.2.37",
-    "eslint": "9.20.1",
-    "expo-module-scripts": "^4.0.5",
-    "lint-staged": "^15.2.10",
-    "react": "18.3.1",
-    "react-native": "^0.76.2",
-    "semantic-release": "^24.2.0",
-    "typescript": "^5.8.3"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:cl3i550n/voice.git"
   },
   "keywords": [
     "android",
@@ -24,10 +17,27 @@
     "speech",
     "voice"
   ],
-  "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "react-native": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "react-native": "./dist/index.mjs",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "android",
+    "ios",
+    "react-native-voice.podspec",
+    "app.plugin.js",
+    "plugin"
+  ],
   "peerDependencies": {
     "expo": ">=48.0.0",
     "react-native": ">=0.71.0"
@@ -37,34 +47,35 @@
       "optional": true
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com:cl3i550n/voice.git"
+  "dependencies": {
+    "invariant": "^2.2.4"
   },
-  "files": [
-    "src",
-    "dist",
-    "android",
-    "ios",
-    "react-native-voice.podspec",
-    "app.plugin.js",
-    "plugin"
-  ],
+  "devDependencies": {
+    "@react-native-community/eslint-config": "^3.2.0",
+    "@semantic-release/git": "^10.0.1",
+    "@types/invariant": "^2.2.37",
+    "@types/react": "^19.1.9",
+    "eslint": "9.20.1",
+    "expo-module-scripts": "^4.0.5",
+    "lint-staged": "^15.2.10",
+    "react": "18.3.1",
+    "react-native": "^0.76.2",
+    "semantic-release": "^24.2.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  },
   "scripts": {
+    "build": "tsup src/index.ts --tsconfig tsconfig.dts.json --dts --format cjs,esm --out-dir dist --clean",
+    "build:plugin": "tsc --build plugin",
+    "prepare": "yarn build && yarn build:plugin",
+    "type-check": "tsc -noEmit",
     "lint": "eslint src/*",
-    "semantic-release": "semantic-release",
+    "lint:plugin": "eslint plugin/src/*",
     "start": "yarn --cwd example start",
     "ios": "yarn --cwd example ios",
     "android": "yarn --cwd example android",
-    "prepare": "yarn build && yarn build:plugin",
-    "build": "tsc",
-    "dev-sync": "cp -r ./dist example/node_modules/@react-native-voice/voice",
-    "type-check": "tsc -noEmit",
-    "build:plugin": "tsc --build plugin",
-    "lint:plugin": "eslint plugin/src/*"
-  },
-  "dependencies": {
-    "invariant": "^2.2.4"
+    "semantic-release": "semantic-release",
+    "dev-sync": "cp -r ./dist example/node_modules/@react-native-voice/voice"
   },
   "codegenConfig": {
     "name": "RNVoiceSpec",

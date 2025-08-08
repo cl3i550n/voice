@@ -1,23 +1,23 @@
+import invariant from 'invariant';
 import {
-  NativeModules,
   NativeEventEmitter,
+  NativeModules,
   Platform,
   type EventSubscription,
 } from 'react-native';
-import invariant from 'invariant';
 import {
-  type SpeechEvents,
-  type TranscriptionEvents,
-  type TranscriptionEndEvent,
-  type TranscriptionErrorEvent,
-  type TranscriptionStartEvent,
-  type SpeechRecognizedEvent,
+  type SpeechEndEvent,
   type SpeechErrorEvent,
+  type SpeechEvents,
+  type SpeechRecognizedEvent,
   type SpeechResultsEvent,
   type SpeechStartEvent,
-  type SpeechEndEvent,
   type SpeechVolumeChangeEvent,
+  type TranscriptionEndEvent,
+  type TranscriptionErrorEvent,
+  type TranscriptionEvents,
   type TranscriptionResultsEvent,
+  type TranscriptionStartEvent,
 } from './VoiceModuleTypes';
 
 const LINKING_ERROR =
@@ -26,8 +26,7 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo Go\n';
 
-//@ts-expect-error
-const isTurboModuleEnabled = global.__turboModuleProxy != null;
+const isTurboModuleEnabled = (globalThis as any).__turboModuleProxy != null;
 
 const VoiceNativeModule = isTurboModuleEnabled
   ? Platform.OS === 'android'
@@ -331,14 +330,14 @@ export type {
   SpeechEndEvent,
   SpeechErrorEvent,
   SpeechEvents,
-  SpeechStartEvent,
   SpeechRecognizedEvent,
   SpeechResultsEvent,
+  SpeechStartEvent,
   SpeechVolumeChangeEvent,
   TranscriptionEndEvent,
   TranscriptionErrorEvent,
   TranscriptionEvents,
-  TranscriptionStartEvent,
   TranscriptionResultsEvent,
+  TranscriptionStartEvent,
 };
 export default new RCTVoice();
